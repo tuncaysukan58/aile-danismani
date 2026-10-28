@@ -1,0 +1,49 @@
+# Aile Danışmanı - Apache & LiteSpeed Yapılandırması
+
+AddDefaultCharset UTF-8
+
+# Dizin listelemeyi kapat ve içerik anlaşmasını devre dışı bırak
+Options -Indexes -MultiViews
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # 1. Klasör değilse sonundaki eğik çizgiyi kaldır (Canonical temiz URL)
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/+$
+    RewriteRule ^ %1 [R=301,L]
+
+    # 2. Doğrudan index.php çağrıldığında ana sayfaya yönlendir
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+index\.php[?\s] [NC]
+    RewriteRule ^index\.php$ / [R=301,L]
+
+    # 3. .php uzantılı doğrudan gelen istekleri uzantısız haline 301 kalıcı yönlendir
+    # POST istekleri, admin, api ve install.php hariç tutulur
+    RewriteCond %{REQUEST_METHOD} !POST
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+([a-zA-Z0-9_-]+)\.php[?\s] [NC]
+    RewriteCond %{REQUEST_URI} !^/admin/ [NC]
+    RewriteCond %{REQUEST_URI} !^/api/ [NC]
+    RewriteCond %{REQUEST_URI} !^/install\.php [NC]
+    RewriteRule ^ /%1 [R=301,L,NE]
+
+    # 4. Blog ve Eğitim Detayları için temiz URL yönlendirmeleri
+    RewriteRule ^blog/([a-zA-Z0-9_-]+)/?$ blog-detay.php?slug=$1 [L,QSA]
+    RewriteRule ^egitim/([a-zA-Z0-9_-]+)/?$ egitim-detay.php?slug=$1 [L,QSA]
+
+    # 5. Uzantısız gelen istek için aynı isimde .php dosyası varsa içeriden çalıştır
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^(.+)$ $1.php [L,QSA]
+</IfModule>
+
+# Güvenlik: SQLite ve SQL dosyalarına doğrudan erişimi engelle
+<FilesMatch "\.(sqlite|sql|log)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# PHP Önbellek & Sıkıştırma (Gzip)
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>

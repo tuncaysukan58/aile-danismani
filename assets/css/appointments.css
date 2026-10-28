@@ -1,0 +1,552 @@
+/* ==========================================================================
+   Randevu Sistemi Arayüz Stilleri
+   (Dolu/Pasif Saatler, Adım Sihirbazı, WhatsApp Onay Modalı)
+   ========================================================================== */
+
+.appointment-page {
+    padding: 60px 0 100px;
+}
+
+.appointment-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.appointment-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+/* Adım Başlığı */
+.step-nav {
+    display: flex;
+    background: var(--bg-surface-elevated);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.step-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 18px 12px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    border-bottom: 3px solid transparent;
+    transition: var(--transition);
+}
+
+.step-number {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-full);
+    background: var(--border-color);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8125rem;
+    font-weight: 700;
+}
+
+.step-item.active {
+    color: var(--primary);
+    border-bottom-color: var(--primary);
+    background: var(--bg-surface);
+}
+
+.step-item.active .step-number {
+    background: var(--primary);
+    color: #FFFFFF;
+}
+
+.step-item.completed {
+    color: var(--success);
+}
+
+.step-item.completed .step-number {
+    background: var(--success);
+    color: #FFFFFF;
+}
+
+/* Adım Gövdeleri */
+.step-content {
+    padding: 40px;
+}
+
+.step-pane {
+    display: none;
+}
+
+.step-pane.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.pane-title {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.pane-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    margin-bottom: 28px;
+}
+
+/* Adım 1: Hizmet Seçimi */
+.services-picker {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.service-pick-card {
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    background: var(--bg-card);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-pick-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.service-pick-card.selected {
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
+.service-pick-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text-primary);
+}
+
+.service-pick-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    flex: 1;
+}
+
+.service-pick-meta {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* Adım 2: Tarih & Saat Seçimi */
+.datetime-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 32px;
+}
+
+.date-selector-box label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.date-input-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.date-input {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-family: inherit;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    outline: none;
+    transition: var(--transition);
+}
+
+.date-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(133, 88, 56, 0.15);
+}
+
+.quick-days {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.quick-day-btn {
+    padding: 8px 14px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
+    background: var(--bg-surface);
+    color: var(--text-secondary);
+    font-size: 0.8125rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.quick-day-btn:hover, .quick-day-btn.active {
+    background: var(--primary);
+    color: #FFFFFF;
+    border-color: var(--primary);
+}
+
+.slot-legend {
+    display: flex;
+    gap: 16px;
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: var(--radius-full);
+}
+
+.legend-dot.available { background: var(--success); }
+.legend-dot.booked { background: var(--danger); }
+.legend-dot.selected { background: var(--primary); }
+
+/* Saat Dilimleri Izgarası */
+.slots-container {
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    min-height: 280px;
+}
+
+.slots-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.slots-header h4 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.slots-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+/* Saat Butonları */
+.slot-btn {
+    padding: 12px 8px;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    transition: var(--transition);
+    position: relative;
+}
+
+.slot-btn:hover:not(.disabled) {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.slot-btn.selected {
+    background: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 12px rgba(133, 88, 56, 0.35);
+}
+
+.slot-btn.selected .slot-status {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* DOLU / PASİF SAATLER */
+.slot-btn.disabled {
+    background: var(--bg-surface-elevated);
+    border-color: var(--border-subtle);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    opacity: 0.65;
+    pointer-events: none;
+    text-decoration: line-through;
+}
+
+.slot-status {
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.slot-btn:not(.disabled) .slot-status {
+    color: var(--success);
+}
+
+.slot-btn.disabled .slot-status {
+    color: var(--danger);
+    font-weight: 600;
+}
+
+.day-blocked-notice {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--danger);
+}
+
+.day-blocked-notice svg {
+    margin-bottom: 12px;
+}
+
+/* Adım 3: Danışan Bilgileri Formu */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group.full-width {
+    grid-column: span 2;
+}
+
+.form-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.form-label .required {
+    color: var(--danger);
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 0.9375rem;
+    font-family: inherit;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    outline: none;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(133, 88, 56, 0.15);
+}
+
+textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Özet Kutusu */
+.booking-summary-card {
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.summary-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+}
+
+.summary-label {
+    color: var(--text-muted);
+}
+
+.summary-val {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Navigasyon Aksiyonları */
+.step-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* WhatsApp Onay Modalı */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(17, 22, 27, 0.7);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-box {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    max-width: 520px;
+    width: 100%;
+    padding: 36px;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    animation: modalPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes modalPop {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-icon-success {
+    width: 72px;
+    height: 72px;
+    border-radius: var(--radius-full);
+    background: #E8F5E9;
+    color: #2E7D32;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.modal-box h3 {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+}
+
+.modal-box p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.modal-appointment-info {
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin-bottom: 24px;
+    text-align: left;
+    font-size: 0.875rem;
+}
+
+.modal-appointment-info div {
+    margin-bottom: 6px;
+}
+
+.btn-whatsapp-confirm {
+    background: #25D366;
+    color: #FFFFFF !important;
+    font-size: 1.05rem;
+    padding: 14px 28px;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+}
+
+.btn-whatsapp-confirm:hover {
+    background: #1EBE5B;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+}
+
+@media (max-width: 768px) {
+    .step-nav {
+        flex-direction: column;
+    }
+    .step-item {
+        padding: 12px;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+    .services-picker {
+        grid-template-columns: 1fr;
+    }
+    .datetime-layout {
+        grid-template-columns: 1fr;
+    }
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .form-group.full-width {
+        grid-column: span 1;
+    }
+    .slots-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

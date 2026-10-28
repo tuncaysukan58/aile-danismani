@@ -1,0 +1,1586 @@
+/* ==========================================================================
+   Aile Danışmanı Web Tasarım Sistemi
+   Referans: Modern, Güven Veren, Sıcak & Profesyonel Tipografi (Lora + Inter)
+   ========================================================================== */
+
+:root {
+    /* Açık Tema Renkleri */
+    --bg-main: #FBF9F5;
+    --bg-surface: #FFFFFF;
+    --bg-surface-elevated: #F5EFEB;
+    --bg-card: #FFFFFF;
+    
+    --text-primary: #1C242B;
+    --text-secondary: #576574;
+    --text-muted: #8395A7;
+    
+    --primary: #855838;            /* Sıcak Terracotta / Kahve */
+    --primary-hover: #6E462A;
+    --primary-light: #F4ECE6;
+    
+    --accent: #2E5A88;             /* Derin Deniz Mavisi */
+    --accent-light: #EBF2F8;
+    
+    --success: #2E7D32;            /* Canlı Zümrüt Yeşili */
+    --success-light: #E8F5E9;
+    
+    --danger: #C62828;
+    --danger-light: #FFEBEE;
+    
+    --border-color: #E6DFD5;
+    --border-subtle: #F0ECE4;
+    
+    --shadow-sm: 0 2px 8px rgba(28, 36, 43, 0.04);
+    --shadow-md: 0 8px 24px rgba(28, 36, 43, 0.08);
+    --shadow-lg: 0 16px 40px rgba(28, 36, 43, 0.12);
+    
+    --font-heading: 'Lora', serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+    --radius-full: 9999px;
+    
+    --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] {
+    --bg-main: #11161B;
+    --bg-surface: #182026;
+    --bg-surface-elevated: #222C35;
+    --bg-card: #182026;
+    
+    --text-primary: #F0F4F8;
+    --text-secondary: #B0BEC5;
+    --text-muted: #78909C;
+    
+    --primary: #C59B79;
+    --primary-hover: #D7AE8C;
+    --primary-light: rgba(197, 155, 121, 0.15);
+    
+    --accent: #64B5F6;
+    --accent-light: rgba(100, 181, 246, 0.15);
+    
+    --border-color: #2D3A45;
+    --border-subtle: #242F38;
+    
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Temel Sıfırlama */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Konteyner */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Tipografi */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+.eyebrow {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 12px;
+    display: inline-block;
+}
+
+/* Butonlar */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 26px;
+    border-radius: var(--radius-full);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 14px rgba(133, 88, 56, 0.25);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(133, 88, 56, 0.35);
+}
+
+.btn-secondary {
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--bg-surface-elevated);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-ghost:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-block {
+    width: 100%;
+}
+
+/* Header */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(251, 249, 245, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-subtle);
+    transition: var(--transition);
+}
+
+[data-theme="dark"] .site-header {
+    background: rgba(17, 22, 27, 0.88);
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.brand-logo-img {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.brand-logo:hover .brand-logo-img {
+    transform: scale(1.08) rotate(3deg);
+}
+
+.brand-logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name {
+    font-family: var(--font-heading);
+    font-size: 1.45rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.brand-badge {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.nav-desktop .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-link {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    padding: 6px 0;
+    position: relative;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--primary);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 2px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.theme-toggle-btn {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.theme-toggle-btn:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.theme-toggle-btn .sun-icon {
+    display: none;
+    width: 20px;
+    height: 20px;
+}
+
+.theme-toggle-btn .moon-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+[data-theme="dark"] .theme-toggle-btn .sun-icon {
+    display: block;
+}
+
+[data-theme="dark"] .theme-toggle-btn .moon-icon {
+    display: none;
+}
+
+.header-cta {
+    padding: 10px 20px;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text-primary);
+    transition: var(--transition);
+}
+
+.mobile-drawer {
+    display: none;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
+    padding: 24px;
+}
+
+.mobile-drawer.active {
+    display: block;
+}
+
+.mobile-menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.mobile-menu-list a {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.mobile-cta-item {
+    margin-top: 12px;
+}
+
+/* Hero Section */
+.hero-section {
+    padding: 80px 0 60px;
+    position: relative;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+.hero-content h1 span {
+    color: var(--primary);
+    font-style: italic;
+}
+
+.hero-mission {
+    font-size: 1.1875rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 540px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.hero-portrait {
+    position: relative;
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.hero-image-wrapper {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    aspect-ratio: 3/4;
+}
+
+.hero-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.hero-image-wrapper:hover img {
+    transform: scale(1.03);
+}
+
+.hero-badge-tag {
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    padding: 10px 24px;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-md);
+    white-space: nowrap;
+    text-align: center;
+}
+
+.hero-badge-tag strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    color: var(--text-primary);
+}
+
+.hero-badge-tag span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* İstatistik Şeridi */
+.stats-bar {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 32px 40px;
+    margin: 40px auto 60px;
+    box-shadow: var(--shadow-sm);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+}
+
+.stat-item b {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.25rem;
+    color: var(--primary);
+    margin-bottom: 4px;
+}
+
+.stat-item span {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Bölüm Başlıkları */
+.section-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 50px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.section-header p {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+}
+
+/* Hizmet / Eğitim Kartları */
+.services-section {
+    padding: 80px 0;
+    background: var(--bg-surface-elevated);
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.service-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+}
+
+.card-image-box {
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.service-card:hover .card-image-box img {
+    transform: scale(1.05);
+}
+
+.card-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(28, 36, 43, 0.75);
+    backdrop-filter: blur(4px);
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+}
+
+.card-body {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body h3 {
+    font-size: 1.35rem;
+    margin-bottom: 12px;
+}
+
+.card-body p {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.card-meta {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Hakkımda Özet Bölümü */
+.about-teaser {
+    padding: 90px 0;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.about-image-wrapper {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.about-content h2 {
+    font-size: 2.4rem;
+    margin-bottom: 20px;
+}
+
+.about-content p {
+    font-size: 1.0625rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 24px;
+}
+
+.features-list {
+    margin: 28px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.features-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.features-list svg {
+    color: var(--primary);
+    flex-shrink: 0;
+}
+
+/* Blog Kartları */
+.blog-section {
+    padding: 80px 0;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.blog-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.blog-thumb {
+    height: 200px;
+    overflow: hidden;
+}
+
+.blog-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.blog-card:hover .blog-thumb img {
+    transform: scale(1.05);
+}
+
+.blog-body {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-category {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+}
+
+.blog-body h3 {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+    line-height: 1.35;
+}
+
+.blog-body p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.blog-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+/* Randevu Çağrı Şeridi (CTA) */
+.cta-banner {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #855838 0%, #6E462A 100%);
+    color: #FFFFFF;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+[data-theme="dark"] .cta-banner {
+    background: linear-gradient(135deg, #182026 0%, #11161B 100%);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cta-banner h2 {
+    color: #FFFFFF;
+    font-size: 2.6rem;
+    margin-bottom: 16px;
+}
+
+.cta-banner p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 600px;
+    margin: 0 auto 32px;
+}
+
+.cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.cta-banner .btn-light {
+    background: #FFFFFF;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.cta-banner .btn-light:hover {
+    background: var(--bg-surface-elevated);
+    transform: translateY(-2px);
+}
+
+.cta-banner .btn-outline {
+    background: transparent;
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.cta-banner .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #FFFFFF;
+}
+
+/* Footer */
+.site-footer {
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border-color);
+    padding-top: 70px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
+    gap: 40px;
+    padding-bottom: 60px;
+}
+
+.footer-brand {
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+}
+
+.footer-title {
+    font-size: 0.85rem;
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.footer-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.65;
+    margin-bottom: 24px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 12px;
+}
+
+.footer-socials a {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+}
+
+.footer-socials a:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.footer-heading {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+    padding-left: 4px;
+}
+
+.footer-contact-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.footer-contact-item svg {
+    color: var(--primary);
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border-subtle);
+    padding: 24px 0;
+}
+
+.footer-bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.admin-link {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-decoration: underline;
+}
+
+.admin-link:hover {
+    color: var(--primary);
+}
+
+/* WhatsApp Float Widget */
+.whatsapp-float-container {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.whatsapp-bubble {
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    padding: 12px 16px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    max-width: 250px;
+    margin-bottom: 12px;
+    position: relative;
+    animation: fadeIn 0.4s ease;
+}
+
+.bubble-title {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+}
+
+.bubble-text {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    display: block;
+}
+
+.bubble-close {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.whatsapp-float-btn {
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    color: #FFFFFF !important;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.whatsapp-float-btn:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-full);
+    background: #25D366;
+    opacity: 0.6;
+    animation: waPulse 2s infinite;
+    z-index: -1;
+}
+
+@keyframes waPulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    70% { transform: scale(1.4); opacity: 0; }
+    100% { transform: scale(1.4); opacity: 0; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   Genel Form Stilleri
+   ========================================================================== */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.form-label .required, .req-star {
+    color: var(--danger);
+    font-weight: 700;
+}
+
+.form-control {
+    width: 100%;
+    padding: 13px 18px;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-family: inherit;
+    background: var(--bg-card);
+    color: var(--text-primary);
+    outline: none;
+    box-sizing: border-box;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    background: var(--bg-surface);
+    box-shadow: 0 0 0 3px rgba(133, 88, 56, 0.15);
+}
+
+textarea.form-control {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Lüks İletişim Sayfası & Form Tasarımı
+   ========================================================================== */
+.contact-page-wrapper {
+    padding: 60px 0 110px;
+}
+
+.contact-alert {
+    padding: 16px 22px;
+    border-radius: var(--radius-md);
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.contact-alert-success {
+    background: #E8F5E9;
+    color: #1B5E20;
+    border: 1px solid #A5D6A7;
+}
+
+.contact-alert-danger {
+    background: #FFEBEE;
+    color: #B71C1C;
+    border: 1px solid #FFCDD2;
+}
+
+.contact-main-grid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.25fr;
+    gap: 48px;
+    align-items: flex-start;
+}
+
+/* Sol Taraf: WhatsApp & İletişim Kartları */
+.contact-info-col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.contact-wa-box {
+    background: linear-gradient(145deg, #E8F5E9 0%, #F1F8F4 100%);
+    border: 1.5px solid #A5D6A7;
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+[data-theme="dark"] .contact-wa-box {
+    background: linear-gradient(145deg, #12281D 0%, #15221B 100%);
+    border-color: #2E583E;
+}
+
+.contact-wa-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.wa-icon-circle {
+    background: #25D366;
+    color: #FFFFFF;
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.35);
+}
+
+.contact-wa-header h4 {
+    font-size: 1.15rem;
+    color: #1B5E20;
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+
+[data-theme="dark"] .contact-wa-header h4 {
+    color: #69F0AE;
+}
+
+.contact-wa-header p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.btn-wa-chat {
+    width: 100%;
+    background: #25D366;
+    color: #FFFFFF !important;
+    font-weight: 600;
+    padding: 13px 20px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+    transition: var(--transition);
+}
+
+.btn-wa-chat:hover {
+    background: #1EBE5B;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+}
+
+/* İletişim Detayları Kartı */
+.contact-details-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: var(--shadow-sm);
+}
+
+.card-inner-title {
+    font-size: 1.3rem;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+.contact-meta-list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.contact-meta-row {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.meta-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.meta-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.meta-text label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.meta-text span {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* Sağ Taraf: Mesaj Formu Kartı */
+.contact-form-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    box-shadow: var(--shadow-md);
+}
+
+.form-card-header {
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 20px;
+}
+
+.form-card-header h3 {
+    font-size: 1.7rem;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.form-card-header p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.contact-styled-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.input-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.input-block label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.input-with-icon, .textarea-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-with-icon svg {
+    position: absolute;
+    left: 16px;
+    color: var(--text-muted);
+    pointer-events: none;
+    transition: var(--transition);
+}
+
+.input-with-icon input {
+    width: 100%;
+    padding: 14px 18px 14px 46px;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-main);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.95rem;
+    outline: none;
+    transition: var(--transition);
+    box-sizing: border-box;
+}
+
+.input-with-icon input:focus {
+    border-color: var(--primary);
+    background: var(--bg-surface);
+    box-shadow: 0 0 0 3px rgba(133, 88, 56, 0.15);
+}
+
+.input-with-icon input:focus + svg,
+.input-with-icon:focus-within svg {
+    color: var(--primary);
+}
+
+.textarea-with-icon textarea {
+    width: 100%;
+    min-height: 140px;
+    padding: 16px 18px;
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: var(--bg-main);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    outline: none;
+    resize: vertical;
+    transition: var(--transition);
+    box-sizing: border-box;
+}
+
+.textarea-with-icon textarea:focus {
+    border-color: var(--primary);
+    background: var(--bg-surface);
+    box-shadow: 0 0 0 3px rgba(133, 88, 56, 0.15);
+}
+
+.btn-submit-message {
+    padding: 16px 32px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: var(--radius-md);
+    gap: 10px;
+    margin-top: 8px;
+}
+
+/* ==========================================================================
+   Mobil Alt Navigasyon Çubuğu (Bottom Navigation Bar)
+   ========================================================================== */
+.mobile-bottom-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 68px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1px solid var(--border-color);
+    z-index: 998;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 8px;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .mobile-bottom-nav {
+    background: rgba(24, 32, 38, 0.95);
+    border-top-color: #2D3A45;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.725rem;
+    font-weight: 500;
+    flex: 1;
+    height: 100%;
+    transition: var(--transition);
+    position: relative;
+}
+
+.bottom-nav-item svg {
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.bottom-nav-item:hover, .bottom-nav-item.active {
+    color: var(--primary);
+}
+
+.bottom-nav-item.active svg {
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.bottom-nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    width: 16px;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 3px;
+}
+
+/* Ortadaki Vurgulu Randevu Butonu */
+.bottom-nav-highlight {
+    position: relative;
+    top: -12px;
+}
+
+.bottom-nav-highlight .nav-highlight-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    background: var(--primary);
+    color: #FFFFFF !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(133, 88, 56, 0.45);
+    transition: transform 0.2s ease;
+}
+
+.bottom-nav-highlight.active .nav-highlight-circle,
+.bottom-nav-highlight:hover .nav-highlight-circle {
+    transform: scale(1.08);
+    background: var(--primary-hover);
+}
+
+.bottom-nav-highlight span {
+    font-weight: 600;
+    color: var(--primary);
+    margin-top: 2px;
+}
+
+.bottom-nav-highlight.active::after {
+    display: none;
+}
+
+/* ==========================================================================
+   Mobil ve Responsive İyileştirmeler
+   ========================================================================== */
+@media (max-width: 992px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    .hero-mission {
+        margin: 0 auto 30px;
+    }
+    .hero-actions {
+        justify-content: center;
+    }
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    .cards-grid, .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .contact-main-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .nav-desktop {
+        display: none;
+    }
+    .mobile-menu-btn {
+        display: flex;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mobil Alt Menüyü Göster */
+    .mobile-bottom-nav {
+        display: flex;
+    }
+
+    /* Sayfa altına menü payı ekle */
+    body {
+        padding-bottom: 78px;
+    }
+
+    /* WhatsApp widget'ını alt menünün hemen üstüne taşı */
+    .whatsapp-float-container {
+        bottom: 82px;
+        right: 18px;
+    }
+
+    .whatsapp-float-btn {
+        width: 52px;
+        height: 52px;
+    }
+
+    .whatsapp-float-btn svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .whatsapp-bubble {
+        display: none;
+    }
+
+    .container {
+        padding: 0 18px;
+    }
+
+    .section-header h2 {
+        font-size: 2rem;
+    }
+
+    .form-row-2 {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .contact-form-card {
+        padding: 24px 18px;
+    }
+
+    .contact-details-card {
+        padding: 24px 18px;
+    }
+
+    .header-inner {
+        height: 68px;
+    }
+
+    .brand-name {
+        font-size: 1.3rem;
+    }
+
+    .header-cta {
+        display: none; /* Mobilde alt menüde var */
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+    .cards-grid, .blog-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+    .stats-bar {
+        padding: 24px 16px;
+    }
+    .footer-bottom-inner {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+    .hero-portrait {
+        max-width: 320px;
+    }
+}
+
