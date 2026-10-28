@@ -18,7 +18,7 @@ include __DIR__ . '/includes/header.php';
     </div>
 
     <!-- İki Kolonlu Biyo & Fotoğraf -->
-    <div style="display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 60px; align-items: flex-start; margin-bottom: 70px;">
+    <div class="about-page-grid" style="display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 60px; align-items: flex-start; margin-bottom: 70px;">
         <div>
             <div style="font-size: 1.1rem; line-height: 1.9; color: var(--text-secondary); display: flex; flex-direction: column; gap: 20px;">
                 <p>

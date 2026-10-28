@@ -1507,6 +1507,14 @@ textarea.form-control {
         grid-template-columns: 1fr;
         gap: 40px;
     }
+    /* Hakkımda sayfası iki sütunlu düzen (inline stili ezmek için !important) */
+    .about-page-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+    }
+    .about-page-grid > * {
+        min-width: 0;
+    }
     .footer-grid {
         grid-template-columns: repeat(2, 1fr);
     }
