@@ -51,7 +51,7 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
 <header class="site-header">
     <div class="container header-inner">
         <a href="<?= SITE_URL ?>/" class="brand-logo">
-            <img src="<?= SITE_URL ?>/assets/images/logo-icon.svg" alt="Çağla Tokyürek Logo" class="brand-logo-img">
+            <img src="<?= SITE_URL ?>/assets/images/logo-mark.png" alt="Çağla Tokyürek Logo" class="brand-logo-img" width="85" height="74">
             <div class="brand-logo-text">
                 <span class="brand-name"><?= htmlspecialchars($counselorName) ?></span>
                 <span class="brand-badge"><?= htmlspecialchars($counselorTitle) ?></span>
