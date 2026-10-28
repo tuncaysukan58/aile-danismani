@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/config/config.php';
 $pageTitle = 'İletişim & Konum — ' . get_setting('counselor_name', 'Çağla Tokyürek');
-$metaDescription = 'Aile danışmanlığı randevusu, adres bilgisi, telefon ve doğrudan WhatsApp iletişim hattı.';
+$metaDescription = 'Aile danışmanlığı randevusu, e-posta ve doğrudan WhatsApp iletişim hattı.';
 
 $db = get_db();
 $successMessage = '';
@@ -85,17 +85,6 @@ include __DIR__ . '/includes/header.php';
                     <div class="contact-meta-list">
                         <div class="contact-meta-row">
                             <div class="meta-icon">
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                            </div>
-                            <div class="meta-text">
-                                <label>Ofis & Seans Adresi</label>
-                                <span><?= htmlspecialchars(get_setting('address', 'Kadıköy, İstanbul')) ?></span>
-                                <small style="display:block; color:var(--text-muted); font-size:0.8rem; margin-top:2px;">(Yüz yüze ve online seans imkanı)</small>
-                            </div>
-                        </div>
-
-                        <div class="contact-meta-row">
-                            <div class="meta-icon">
                                 <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                             </div>
                             <div class="meta-text">
@@ -115,20 +104,6 @@ include __DIR__ . '/includes/header.php';
                                 <a href="mailto:<?= htmlspecialchars(get_setting('email', 'curlycagla@gmail.com')) ?>" style="color:inherit; text-decoration:none;">
                                     <?= htmlspecialchars(get_setting('email', 'curlycagla@gmail.com')) ?>
                                 </a>
-                            </div>
-                        </div>
-                                <label>Telefon</label>
-                                <span><?= htmlspecialchars(get_setting('phone', '+90 555 123 45 67')) ?></span>
-                            </div>
-                        </div>
-
-                        <div class="contact-meta-row">
-                            <div class="meta-icon">
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                            </div>
-                            <div class="meta-text">
-                                <label>E-Posta</label>
-                                <span><?= htmlspecialchars(get_setting('email', 'curlycagla@gmail.com')) ?></span>
                             </div>
                         </div>
 

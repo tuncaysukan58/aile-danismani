@@ -91,7 +91,6 @@ include __DIR__ . '/includes/header.php';
             <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.95rem;">
                 <div>📧 <strong>E-posta:</strong> <a href="mailto:<?= htmlspecialchars(get_setting('email', 'curlycagla@gmail.com')) ?>" style="color: var(--primary); text-decoration: underline;"><?= htmlspecialchars(get_setting('email', 'curlycagla@gmail.com')) ?></a></div>
                 <div>💬 <strong>WhatsApp:</strong> <a href="<?= get_whatsapp_url() ?>" target="_blank" style="color: var(--primary); text-decoration: underline;"><?= htmlspecialchars(get_whatsapp_display()) ?></a></div>
-                <div>📍 <strong>Konum:</strong> <?= htmlspecialchars(get_setting('address', 'Kadıköy, İstanbul')) ?></div>
             </div>
         </section>
 
