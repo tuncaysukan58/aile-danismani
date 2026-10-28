@@ -71,15 +71,6 @@ try {
     $ins->execute([$serviceId ?: null, $clientName, $clientPhone, $clientEmail, $appointmentDate, $appointmentTime, $notes]);
     $appointmentId = $db->lastInsertId();
 
-    // WhatsApp Bildirim Mesajı Oluştur
-    $counselorPhone = get_setting('whatsapp_number', '905551234567');
-    $counselorPhone = preg_replace('/[^0-9]/', '', $counselorPhone);
-    if (substr($counselorPhone, 0, 1) === '0') {
-        $counselorPhone = '90' . substr($counselorPhone, 1);
-    } elseif (strlen($counselorPhone) === 10) {
-        $counselorPhone = '90' . $counselorPhone;
-    }
-
     $formattedDate = format_date_tr($appointmentDate);
 
     $waMessage = "🌿 *YENİ RANDEVU TALEBİ* 🌿\n\n";
@@ -96,7 +87,7 @@ try {
     }
     $waMessage .= "\n_Web sitesi randevu sistemi üzerinden otomatik oluşturulmuştur._";
 
-    $whatsappUrl = "https://api.whatsapp.com/send?phone=" . $counselorPhone . "&text=" . urlencode($waMessage);
+    $whatsappUrl = get_whatsapp_url($waMessage);
 
     echo json_encode([
         'success' => true,

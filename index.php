@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/config/config.php';
-$pageTitle = get_setting('site_title', 'Uzm. Aile Danışmanı Elif Karaca | Aile & Çift Terapisi');
-$metaDescription = get_setting('hero_mission', 'Aile bağlarını güçlendiren, ebeveynlik yolculuğunuza rehberlik eden profesyonel danışmanlık.');
+$pageTitle = get_setting('site_title', 'Çağla Tokyürek — Çocuk Gelişimci & Aile, Çift ve Boşanma Danışmanı');
+$metaDescription = get_setting('hero_mission', 'Boşanma sürecinde çift ve çocuk odaklı rehberlik, aile içi ilişki dinamikleri ve çocuk gelişimi alanında bilimsel danışmanlık.');
 
 $db = get_db();
 
@@ -21,7 +21,7 @@ include __DIR__ . '/includes/header.php';
     <div class="container hero-grid">
         <div class="hero-content">
             <span class="eyebrow"><?= htmlspecialchars(get_setting('eyebrow', 'Aile & Çift Danışmanı, Eğitmen')) ?></span>
-            <h1><?= htmlspecialchars(get_setting('counselor_name', 'Elif Karaca')) ?></h1>
+            <h1><?= htmlspecialchars(get_setting('counselor_name', 'Çağla Tokyürek')) ?></h1>
             <p class="hero-mission">
                 <?= nl2br(htmlspecialchars(get_setting('hero_mission', 'Aile içi dinamikleri güçlendiren, ebeveynlik yolculuğunuza rehberlik eden ve ilişkilerdeki tıkanıklıkları sevgi ve bilimsel temellerle çözen bütüncül bir yaklaşım.'))) ?>
             </p>
@@ -42,8 +42,8 @@ include __DIR__ . '/includes/header.php';
                 <img src="<?= SITE_URL ?>/assets/images/counselor.jpg" alt="<?= htmlspecialchars(get_setting('counselor_name')) ?>">
             </div>
             <div class="hero-badge-tag">
-                <strong><?= htmlspecialchars(get_setting('counselor_name', 'Elif Karaca')) ?></strong>
-                <span><?= htmlspecialchars(get_setting('counselor_title', 'Uzm. Aile Danışmanı')) ?></span>
+                <strong><?= htmlspecialchars(get_setting('counselor_name', 'Çağla Tokyürek')) ?></strong>
+                <span><?= htmlspecialchars(get_setting('counselor_title', 'Çocuk Gelişimci & Aile, Çift ve Boşanma Danışmanı')) ?></span>
             </div>
         </div>
     </div>
@@ -80,23 +80,27 @@ include __DIR__ . '/includes/header.php';
             <img src="<?= SITE_URL ?>/assets/images/therapy.jpg" alt="Aile ve Çift Seansı">
         </div>
         <div class="about-content">
-            <span class="eyebrow">Yaklaşımım & Felsefem</span>
-            <h2>İlişkilerde Onarım ve Güvenli Bir Liman İnşa Etmek</h2>
+            <span class="eyebrow">Yaklaşımım & Uzmanlığım</span>
+            <h2>Boşanma Süreci, Aile Dinamikleri ve Çocuk Gelişimi</h2>
             <p>
-                <?= htmlspecialchars(get_setting('about_text_short', 'Her ailenin kendi içinde eşsiz bir dengesi ve aşabileceği dönüm noktaları vardır. Amacım, birbirinizi yargılamadan dinleyebileceğiniz ve sevgi bağlarını tazeleyebileceğiniz güvenli bir terapi alanı sunmaktır.')) ?>
+                <?= htmlspecialchars(get_setting('about_text_short', 'Atatürk Üniversitesi Çocuk Gelişimi Bölümü lisans mezunu olan ve akademik çalışmalarını psikoloji alanında sürdüren Çağla Tokyürek; Arel Üniversitesi Aile Danışmanlığı uzmanlığıyla boşanma sürecindeki çiftler, boşanmış aileler ve çocuklarla çalışmaktadır.')) ?>
             </p>
             <ul class="features-list">
                 <li>
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>Gottman Çift Terapisi ve Şema Terapi temelli kanıta dayalı yöntemler</span>
+                    <span>Atatürk Üniv. Çocuk Gelişimi & Arel Üniv. Aile Danışmanlığı uzmanlığı</span>
                 </li>
                 <li>
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>Yüz yüze (Kadıköy/İstanbul) ve dünyanın her yerinden online seans imkanı</span>
+                    <span>Boşanma sürecinde çiftler, boşanmış aileler ve çocuk odaklı profesyonel rehberlik</span>
                 </li>
                 <li>
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>Koşulsuz kabul, tam gizlilik ve etik değerlere bağlı profesyonel süreç</span>
+                    <span>Oyun Terapisi, Denver II Gelişimsel Tarama, MOXO ve Çocuk Testleri</span>
+                </li>
+                <li>
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>Yüz yüze ve dünyanın her yerinden online görüntülü seans imkanı</span>
                 </li>
             </ul>
             <div style="margin-top: 24px;">

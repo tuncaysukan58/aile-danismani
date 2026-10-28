@@ -1,2 +1,8 @@
 # Markdown dosyalarÄ±
 *.md
+
+
+# Veritabanı (gerçek veri)
+database/*.sqlite
+database/*.sqlite-journal
+

@@ -13,7 +13,7 @@ if (!$service) {
     exit;
 }
 
-$pageTitle = $service['title'] . ' — ' . get_setting('counselor_name', 'Elif Karaca');
+$pageTitle = $service['title'] . ' — ' . get_setting('counselor_name', 'Çağla Tokyürek');
 $metaDescription = $service['summary'];
 $canonicalUrl = SITE_URL . '/egitim/' . $service['slug'];
 
@@ -70,12 +70,10 @@ include __DIR__ . '/includes/header.php';
                 </a>
 
                 <?php 
-                $cleanWa = preg_replace('/[^0-9]/', '', get_setting('whatsapp_number', '905551234567'));
-                if (substr($cleanWa, 0, 1) === '0') $cleanWa = '90' . substr($cleanWa, 1);
-                $waText = urlencode("Merhaba, '" . $service['title'] . "' hakkında detaylı bilgi ve kayıt koşullarını öğrenmek istiyorum.");
+                $waText = "Merhaba, '" . $service['title'] . "' hakkında detaylı bilgi ve danışmanlık koşullarını öğrenmek istiyorum.";
                 ?>
-                <a href="https://api.whatsapp.com/send?phone=<?= $cleanWa ?>&text=<?= $waText ?>" target="_blank" class="btn btn-secondary btn-block" style="background:#25D366; color:#fff; border-color:#25D366;">
-                    WhatsApp'tan Soru Sor
+                <a href="<?= get_whatsapp_url($waText) ?>" target="_blank" class="btn btn-secondary btn-block" style="background:#25D366; color:#fff; border-color:#25D366;">
+                    WhatsApp'tan Soru Sor (<?= htmlspecialchars(get_whatsapp_display()) ?>)
                 </a>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/config/config.php';
-$pageTitle = 'Randevu Al — ' . get_setting('counselor_name', 'Elif Karaca');
+$pageTitle = 'Randevu Al — ' . get_setting('counselor_name', 'Çağla Tokyürek');
 $metaDescription = 'Online veya yüz yüze seans için randevunuzu kolayca oluşturun. Müsait saatleri anında görüntüleyin.';
 
 $db = get_db();
@@ -186,6 +186,13 @@ include __DIR__ . '/includes/header.php';
                             <div class="form-group full-width">
                                 <label class="form-label" for="clientNotes">Danışmak İstediğiniz Konu / Notlar (Opsiyonel)</label>
                                 <textarea id="clientNotes" name="notes" class="form-control" placeholder="Kısaca danışmak istediğiniz durumdan bahsedebilirsiniz..."></textarea>
+                            </div>
+
+                            <div class="form-group full-width" style="margin-top: 10px;">
+                                <label style="display:flex; align-items:flex-start; gap:10px; font-size:0.875rem; color:var(--text-secondary); cursor:pointer;">
+                                    <input type="checkbox" id="kvkkConsent" name="kvkk_consent" required style="margin-top:3px;">
+                                    <span><a href="<?= SITE_URL ?>/kvkk" target="_blank" style="color:var(--primary); text-decoration:underline; font-weight:500;">KVKK Aydınlatma Metni</a>'ni okudum, kişisel verilerimin randevu teyidi ve danışmanlık süreci kapsamında işlenmesini onaylıyorum. <span class="required">*</span></span>
+                                </label>
                             </div>
                         </div>
 

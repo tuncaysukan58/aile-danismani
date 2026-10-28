@@ -5,10 +5,10 @@
         <div class="footer-grid">
             <!-- Kolon 1: Marka & Biyo -->
             <div class="footer-col footer-about">
-                <h3 class="footer-brand"><?= htmlspecialchars(get_setting('counselor_name', 'Elif Karaca')) ?></h3>
-                <p class="footer-title"><?= htmlspecialchars(get_setting('counselor_title', 'Uzm. Aile Danışmanı & Psikolojik Danışman')) ?></p>
+                <h3 class="footer-brand"><?= htmlspecialchars(get_setting('counselor_name', 'Çağla Tokyürek')) ?></h3>
+                <p class="footer-title"><?= htmlspecialchars(get_setting('counselor_title', 'Çocuk Gelişimci & Aile, Çift ve Boşanma Danışmanı')) ?></p>
                 <p class="footer-desc">
-                    <?= htmlspecialchars(get_setting('about_text_short', 'Aile içi ilişkiler, evlilik danışmanlığı ve ebeveyn rehberliği alanında bilimsel ve şefkatli yaklaşım.')) ?>
+                    <?= htmlspecialchars(get_setting('about_text_short', 'Boşanma süreci rehberliği, çocuk gelişimi ve aile danışmanlığı alanında bilimsel ve şefkatli yaklaşım.')) ?>
                 </p>
                 <div class="footer-socials">
                     <?php if ($ig = get_setting('instagram')): ?>
@@ -46,11 +46,12 @@
             <div class="footer-col">
                 <h4 class="footer-heading">Çalışma Alanları</h4>
                 <ul class="footer-links">
-                    <li><a href="<?= SITE_URL ?>/egitimler">Bireysel Aile Danışmanlığı</a></li>
-                    <li><a href="<?= SITE_URL ?>/egitimler">Çift ve Evlilik Terapisi</a></li>
-                    <li><a href="<?= SITE_URL ?>/egitimler">Bilinçli Ebeveynlik Atölyesi</a></li>
-                    <li><a href="<?= SITE_URL ?>/egitimler">Ergenlikte İletişim Eğitimi</a></li>
-                    <li><a href="<?= SITE_URL ?>/egitimler">Boşanma ve Çocuk Rehberliği</a></li>
+                    <li><a href="<?= SITE_URL ?>/egitimler">Boşanma Danışmanlığı & Çocuk</a></li>
+                    <li><a href="<?= SITE_URL ?>/egitimler">Aile ve Çift Danışmanlığı</a></li>
+                    <li><a href="<?= SITE_URL ?>/egitimler">Çocuk Gelişim & Denver II Testi</a></li>
+                    <li><a href="<?= SITE_URL ?>/egitimler">MOXO Dikkat Testi</a></li>
+                    <li><a href="<?= SITE_URL ?>/egitimler">Oyun Terapisi & Resim Analizi</a></li>
+                    <li><a href="<?= SITE_URL ?>/egitimler">Eğitim Danışmanlığı</a></li>
                 </ul>
             </div>
 
@@ -63,11 +64,15 @@
                 </div>
                 <div class="footer-contact-item">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                    <span><?= htmlspecialchars(get_setting('phone', '+90 555 123 45 67')) ?></span>
+                    <a href="<?= get_whatsapp_url() ?>" target="_blank" style="color:inherit; text-decoration:none;">
+                        WhatsApp: <strong><?= htmlspecialchars(get_whatsapp_display()) ?></strong>
+                    </a>
                 </div>
                 <div class="footer-contact-item">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    <span><?= htmlspecialchars(get_setting('email', 'iletisim@elifkaraca.com')) ?></span>
+                    <a href="mailto:<?= htmlspecialchars(get_setting('email', 'curlycagla@gmail.com')) ?>" style="color:inherit; text-decoration:none;">
+                        <?= htmlspecialchars(get_setting('email', 'curlycagla@gmail.com')) ?>
+                    </a>
                 </div>
                 <div class="footer-contact-item">
                     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
@@ -79,8 +84,9 @@
 
     <div class="footer-bottom">
         <div class="container footer-bottom-inner">
-            <p>© <?= date('Y') ?> <?= htmlspecialchars(get_setting('counselor_name', 'Elif Karaca')) ?> — Tüm Hakları Saklıdır.</p>
+            <p>© <?= date('Y') ?> <?= htmlspecialchars(get_setting('counselor_name', 'Çağla Tokyürek')) ?> — Tüm Hakları Saklıdır.</p>
             <div class="footer-bottom-links">
+                <a href="<?= SITE_URL ?>/kvkk" style="color:var(--text-muted); font-size:0.85rem; margin-right:16px;">KVKK Aydınlatma Metni</a>
                 <a href="<?= SITE_URL ?>/admin/login.php" class="admin-link">Yönetici Paneli</a>
             </div>
         </div>

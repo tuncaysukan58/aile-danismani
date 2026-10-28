@@ -101,35 +101,36 @@ ON DUPLICATE KEY UPDATE username = VALUES(username);
 
 -- Site Ayarları
 INSERT INTO settings (`key`, `value`) VALUES
-('site_title', 'Uzm. Aile Danışmanı Çağla TOKYÜREK | Aile, Çift & Ebeveyn Danışmanlığı'),
-('counselor_name', 'Çağla TOKYÜREK'),
-('counselor_title', 'Uzm. Aile Danışmanı & Psikolojik Danışman'),
-('eyebrow', 'Aile & Çift Danışmanı, Eğitmen ve Konuşmacı'),
-('hero_mission', 'Aile içi dinamikleri güçlendiren, ebeveynlik yolculuğunuza rehberlik eden ve ilişkilerdeki tıkanıklıkları sevgi ve bilimsel temellerle çözen bütüncül bir yaklaşım.'),
-('whatsapp_number', '905551234567'),
+('site_title', 'Çağla Tokyürek — Çocuk Gelişimci & Aile, Çift ve Boşanma Danışmanı'),
+('counselor_name', 'Çağla Tokyürek'),
+('counselor_title', 'Çocuk Gelişimci & Aile, Çift ve Boşanma Danışmanı'),
+('eyebrow', 'Çocuk Gelişimi | Aile, Çift ve Boşanma Danışmanlığı'),
+('hero_mission', 'Boşanma sürecinde çift ve çocuk odaklı rehberlik, aile içi ilişki dinamikleri ve çocuk gelişimi alanında bilimsel, şefkatli ve profesyonel danışmanlık.'),
+('whatsapp_number', '@caglatokyurek'),
 ('phone', '+90 (555) 123 45 67'),
-('email', 'iletisim@caglatokyurek.com'),
-('address', 'Bağdat Caddesi No: 142/5 Kadıköy, İstanbul'),
+('email', 'curlycagla@gmail.com'),
+('address', 'Kadıköy, İstanbul'),
 ('working_hours', 'Pazartesi - Cumartesi: 10:00 - 18:30 (Pazar Kapalı)'),
 ('available_slots', '10:00,11:15,13:00,14:15,15:30,16:45,18:00'),
-('instagram', 'https://instagram.com/caglatokyurek.aile'),
+('instagram', 'https://instagram.com/caglatokyurek'),
 ('youtube', 'https://youtube.com/@caglatokyurek'),
 ('linkedin', 'https://linkedin.com'),
-('stat_experience', '12+ Yıl'),
-('stat_clients', '2500+ Seans'),
-('stat_seminars', '40+ Seminer'),
-('stat_followers', '250K+'),
-('about_text_short', 'İstanbul Üniversitesi Psikolojik Danışmanlık ve Rehberlik lisansının ardından Aile Danışmanlığı alanında uzmanlığını tamamlayan Çağla TOKYÜREK, 12 yılı aşkın süredir çiftler, ebeveynler ve çocuklarla çalışmaktadır.'),
-('about_text_full', 'İstanbul Üniversitesi Psikolojik Danışmanlık ve Rehberlik Bölümü mezuniyetinin ardından Klinik Psikoloji ve Aile Danışmanlığı alanında yüksek lisansını tamamlamıştır. Gottman Çift Terapisi, Şema Terapi ve Deneyimsel Oyun Terapisi eğitimlerini uluslararası akreditasyonla tamamlayarak danışanlarına kanıta dayalı ve şefkatli bir terapi alanı sunmaktadır.\n\nTürkiye genelinde yüz yüze ve online danışmanlık hizmeti sunmakta; kurucusu olduğu "Bilinçli Ebeveynlik", "Evlilikte Biz Olabilmek" ve "Ergenlikte İletişim Köprüleri" seminer dizileriyle binlerce anne-babaya ulaşmaktadır.')
+('stat_experience', '8+ Yıl'),
+('stat_clients', '1500+ Seans'),
+('stat_seminars', '30+ Eğitim'),
+('stat_followers', '50K+'),
+('about_text_short', 'Atatürk Üniversitesi Çocuk Gelişimi lisans mezunu olan ve akademik çalışmalarını psikoloji alanında sürdüren Çağla Tokyürek; İstanbul Arel Üniversitesi Aile Danışmanlığı uzmanlığıyla boşanma sürecindeki çiftler, boşanmış aileler ve çocuklarla profesyonel danışmanlık süreçleri yürütmektedir.'),
+('about_text_full', 'Atatürk Üniversitesi Çocuk Gelişimi Bölümü lisans mezunu olan Çağla Tokyürek, akademik çalışmalarını psikoloji alanında sürdürmektedir. İstanbul Arel Üniversitesi\'nde Aile Danışmanlığı eğitimini tamamlamıştır.\n\nÖzellikle boşanma alanında yoğunlaşarak; boşanma aşamasındaki çiftler, boşanmış ya da boşanmaya karar veren ailelerle ve bu süreçteki çocuklarıyla profesyonel çalışmalar yürütmektedir. Sürecin sağlıklı yürütülmesi, ebeveynlik iş birliğinin korunması ve çocukların gelişimsel ihtiyaçlarının gözetilmesi temel önceliğidir.\n\nTamamladığı uzmanlık eğitimleri arasında Boşanma Danışmanlığı, Yetişkin, Ergen ve Çocuk Psikolojisi Eğitimleri, Çocuk Değerlendirme Testleri, Oyun Terapisi, Çocuk Resimlerinin Psiko-Pedagojik Analizi (Resim Analizi), MOXO Dikkat Testi, Denver II Gelişimsel Tarama Testi ve Eğitim Danışmanlığı yer almaktadır.')
 ON DUPLICATE KEY UPDATE `value` = VALUES(`value`);
 
 -- Örnek Eğitimler & Hizmetler
 INSERT INTO services (id, title, slug, category, summary, content, duration, price, image, is_active, display_order) VALUES
-(1, 'Bireysel Aile Danışmanlığı', 'bireysel-aile-danismanligi', 'Danışmanlık', 'Aile bireyleri arasındaki iletişim engellerini aşmak ve aile içi dengeleri yeniden kurmak için profesyonel destek.', 'Aile içindeki roller, kuşaklararası aktarımlar, kriz anları ve iletişim kopuklukları üzerine odaklanılan seanslarda; her bireyin kendini güvende ve anlaşılmış hissedeceği bir alan oluşturulur.', '50 Dakika', 'Yüz Yüze / Online', 'assets/images/counselor.jpg', 1, 1),
-(2, 'Çift ve Evlilik Terapisi', 'cift-ve-evlilik-terapisi', 'Danışmanlık', 'Gottman yöntemi temelli, çiftlerin duygusal bağlarını onarmalarına ve çatışmaları yapıcı yönetmelerine rehberlik.', 'İlişkilerde tekrar eden kısırdöngüler, kırgınlıklar, güven sorunları ve ortak yaşam hedefleri yapılandırılmış seanslarla ele alınır. Birlikte sevgi ve saygıyla büyüyen bir ilişki inşa edilir.', '60 Dakika', 'Yüz Yüze / Online', 'assets/images/therapy.jpg', 1, 2),
-(3, 'Bilinçli Ebeveynlik Atölyesi', 'bilincli-ebeveynlik-atolyesi', 'Eğitim & Seminer', 'Çocukların gelişim evrelerini anlama, kriz anlarında şefkatli sınırlar koyma ve pozitif disiplin eğitimi.', '4 haftalık modüler eğitim programı. Çocuklarda öfke nöbetleri, kardeş kıskançlığı, ekran bağımlılığı ve özgüven gelişimi konularında pratik uygulamalı atölye çalışması.', '4 Hafta (Haftada 2 Saat)', 'Grup Eğitimi', 'assets/images/seminar.jpg', 1, 3),
-(4, 'Ergenlikte İletişim Köprüleri Semineri', 'ergenlikte-iletisim-kopruleri', 'Eğitim & Seminer', 'Ergenlik çağındaki gençlerin psikolojik dünyasını anlama ve çatışmasız sağlıklı iletişim kurma semineri.', 'Gençlerin kimlik arayışı, okul ve sınav kaygısı, aileyle çatışmalar ve dijital çağda ergenlik konuları interaktif vaka örnekleriyle ele alınır.', 'Tek Oturum (2.5 Saat)', 'Canlı / Online', 'assets/images/seminar.jpg', 1, 4),
-(5, 'Boşanma Süreci ve Çocuk Rehberliği', 'bosanma-sureci-ve-cocuk-rehberligi', 'Danışmanlık', 'Ayrılık ve boşanma evresinde çocukların ruh sağlığını koruma, ortak ebeveynlik planı oluşturma desteği.', 'Eşler arasındaki bağ biterken ebeveynlik bağının sağlıklı sürdürülmesi ve çocukların bu süreci en az hasarla atlatması için özel yapılandırılmış danışmanlık.', '50 Dakika', 'Yüz Yüze / Online', 'assets/images/counselor.jpg', 1, 5)
+(1, 'Boşanma Danışmanlığı & Çocuk Rehberliği', 'bosanma-danismanligi', 'Boşanma Danışmanlığı', 'Boşanma aşamasındaki çiftler, boşanmış aileler ve bu süreçteki çocukların psikolojik dengesini koruyan uzman rehberlik.', 'Boşanma sürecine karar verme, ayrılık sürecini çocuklara açıklama, velayet ve ortak ebeveynlik planı oluşturma, boşanma sonrası yeni yaşam düzenine uyum süreçlerinde bilimsel ve şefkatli danışmanlık sunulur.', '50 Dakika', 'Yüz Yüze / Online', 'assets/images/counselor.jpg', 1, 1),
+(2, 'Aile ve Çift Danışmanlığı', 'aile-ve-cift-danismanligi', 'Aile & Çift', 'Eşler arası iletişim çatışmalarını çözme, ilişki bağlarını güçlendirme ve aile içi krizleri yönetme desteği.', 'İlişkilerde tekrar eden kısırdöngüler, iletişim engelleri, duygusal kopukluklar ve aile içi uyum problemleri ele alınır. Çiftlerin birbirini yargılamadan dinleyebileceği güvenli bir danışmanlık alanı sağlanır.', '50 Dakika', 'Yüz Yüze / Online', 'assets/images/therapy.jpg', 1, 2),
+(3, 'Çocuk Değerlendirme & Gelişim Testleri', 'cocuk-degerlendirme-testleri', 'Çocuk Gelişimi', 'Denver II Gelişimsel Tarama Testi ve Çocuk Değerlendirme Testleri ile bilişsel, motor ve sosyal gelişim takibi.', '0-6 yaş ve okul dönemi çocukların gelişim evreleri standart bilimsel test bataryaları ile taranır. Olası gelişimsel gerilikler veya güçlü yönler tespit edilerek aileye bireysel gelişim haritası çıkarılır.', '50 Dakika', 'Yüz Yüze Seans', 'assets/images/seminar.jpg', 1, 3),
+(4, 'MOXO Dikkat Testi Uygulaması', 'moxo-dikkat-testi', 'Test & Değerlendirme', 'Çocuk ve ergenlerde dikkat, zamanlama, dürtüsellik ve hiperaktivite düzeyini ölçen uluslararası geçerli test.', 'Görsel ve işitsel çeldiriciler eşliğinde bilgisayar ortamında uygulanan MOXO Dikkat Testi, çocuğun dikkat performansını ve çevresel uyaranlara tepkisini objektif olarak raporlar.', '45 Dakika', 'Yüz Yüze Seans', 'assets/images/seminar.jpg', 1, 4),
+(5, 'Oyun Terapisi & Çocuk Resimleri Analizi', 'oyun-terapisi-ve-resim-analizi', 'Çocuk Terapisi', 'Oyun terapisi ve çocuk resimlerinin psiko-pedagojik analizi ile çocuğun iç dünyasını anlama ve duygusal iyileşme.', 'Çocuklar duygularını yetişkinler gibi sözcüklerle değil, oyun ve çizim yoluyla ifade eder. Oyun terapisi ve resim analiziyle kaygı, korku, öfke ve travma süreçleri güvenli bir ortamda çözümlenir.', '50 Dakika', 'Yüz Yüze Seans', 'assets/images/counselor.jpg', 1, 5),
+(6, 'Eğitim Danışmanlığı & Ebeveyn Rehberliği', 'egitim-danismanligi-ve-ebeveyn-rehberligi', 'Eğitim Danışmanlığı', 'Okul uyumu, çalışma alışkanlıkları, ergenlik dönemi iletişimi ve bilinçli ebeveynlik desteği.', 'Okul başarısı, sınav dönemi kaygıları, ergenlikte ebeveyn-çocuk iletişimi ve sınır koyma dinamikleri üzerine ailelere özel yapılandırılmış rehberlik.', '50 Dakika', 'Yüz Yüze / Online', 'assets/images/therapy.jpg', 1, 6)
 ON DUPLICATE KEY UPDATE title = VALUES(title);
 
 -- Örnek Blog Yazıları

@@ -96,9 +96,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
                 <div class="admin-form-group">
-                    <label for="whatsapp_number" style="color:#059669;">WhatsApp Randevu Numarası * (Bildirimlerin Gideceği Hat)</label>
-                    <input type="text" id="whatsapp_number" name="whatsapp_number" class="admin-form-control" value="<?= htmlspecialchars(get_setting('whatsapp_number')) ?>" required placeholder="905551234567">
-                    <small style="color:var(--admin-text-muted); font-size:0.75rem;">Örn: 905551234567 (Başında 90 olacak şekilde)</small>
+                    <label for="whatsapp_number" style="color:#059669;">WhatsApp Randevu Hattı / Kullanıcı Adı *</label>
+                    <input type="text" id="whatsapp_number" name="whatsapp_number" class="admin-form-control" value="<?= htmlspecialchars(get_setting('whatsapp_number')) ?>" required placeholder="@caglatokyurek veya 905xxxxxxxxx">
+                    <small style="color:var(--admin-text-muted); font-size:0.75rem;">WhatsApp kullanıcı adı (örn: @caglatokyurek) veya telefon numarası (örn: 905xxxxxxxxx)</small>
                 </div>
                 <div class="admin-form-group">
                     <label for="phone">Telefon Numarası (Görünür Format)</label>

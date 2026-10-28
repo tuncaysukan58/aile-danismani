@@ -16,7 +16,7 @@ if (!$post) {
 // Okunma sayısını artır
 $db->prepare("UPDATE blog_posts SET views = views + 1 WHERE id = ?")->execute([$post['id']]);
 
-$pageTitle = $post['title'] . ' — ' . get_setting('counselor_name', 'Elif Karaca');
+$pageTitle = $post['title'] . ' — ' . get_setting('counselor_name', 'Çağla Tokyürek');
 $metaDescription = $post['summary'];
 $canonicalUrl = SITE_URL . '/blog/' . $post['slug'];
 

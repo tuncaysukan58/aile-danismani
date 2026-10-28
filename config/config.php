@@ -155,3 +155,36 @@ function format_date_tr(string $date): string {
     $year = date('Y', $timestamp);
     return "$day $month $year";
 }
+
+/**
+ * WhatsApp Yönlendirme URL'si (Kullanıcı Adı veya Telefon Numarası Destekli)
+ */
+function get_whatsapp_url(string $customText = ''): string {
+    $wa = trim(get_setting('whatsapp_number', '@caglatokyurek'));
+    $cleanUser = ltrim($wa, '@');
+    $textParam = $customText ? ('?text=' . urlencode($customText)) : '';
+
+    // Eğer harf içeriyorsa veya @ ile başlıyorsa kullanıcı adı linki (wa.me/kullaniciadi) oluştur
+    if (preg_match('/[a-zA-Z]/', $cleanUser)) {
+        return "https://wa.me/{$cleanUser}" . $textParam;
+    }
+
+    // Yalnızca rakam ise telefon numarası linki oluştur
+    $digits = preg_replace('/[^0-9]/', '', $cleanUser);
+    if (str_starts_with($digits, '0')) {
+        $digits = '90' . substr($digits, 1);
+    }
+    return "https://api.whatsapp.com/send?phone={$digits}" . ($customText ? ('&text=' . urlencode($customText)) : '');
+}
+
+/**
+ * WhatsApp Görünen Metin (@kullaniciadi veya Telefon)
+ */
+function get_whatsapp_display(): string {
+    $wa = trim(get_setting('whatsapp_number', '@caglatokyurek'));
+    $clean = ltrim($wa, '@');
+    if (preg_match('/[a-zA-Z]/', $clean)) {
+        return '@' . $clean;
+    }
+    return $wa;
+}

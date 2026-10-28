@@ -3,9 +3,9 @@ if (!defined('SITE_URL')) {
     require_once __DIR__ . '/../config/config.php';
 }
 
-$counselorName = get_setting('counselor_name', 'Elif Karaca');
-$counselorTitle = get_setting('counselor_title', 'Uzm. Aile Danışmanı');
-$siteTitle = get_setting('site_title', $counselorName . ' — Aile ve Çift Danışmanı');
+$counselorName = get_setting('counselor_name', 'Çağla Tokyürek');
+$counselorTitle = get_setting('counselor_title', 'Çocuk Gelişimci & Aile, Çift ve Boşanma Danışmanı');
+$siteTitle = get_setting('site_title', $counselorName . ' — Çocuk Gelişimci & Aile, Çift ve Boşanma Danışmanı');
 $currentPage = basename($_SERVER['PHP_SELF'], '.php');
 ?>
 <!DOCTYPE html>

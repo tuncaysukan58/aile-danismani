@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/config/config.php';
-$pageTitle = 'Eğitimlerim ve Danışmanlık Hizmetleri — ' . get_setting('counselor_name', 'Elif Karaca');
+$pageTitle = 'Eğitimlerim ve Danışmanlık Hizmetleri — ' . get_setting('counselor_name', 'Çağla Tokyürek');
 $metaDescription = 'Bireysel aile danışmanlığı, çift terapisi, bilinçli ebeveynlik ve ergen iletişim atölyeleri.';
 
 $db = get_db();

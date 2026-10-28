@@ -16,7 +16,7 @@ $activePage = basename($_SERVER['PHP_SELF'], '.php');
 <!-- Sidebar -->
 <aside class="admin-sidebar">
     <div class="sidebar-brand">
-        <h3><?= htmlspecialchars(get_setting('counselor_name', 'Elif Karaca')) ?></h3>
+        <h3><?= htmlspecialchars(get_setting('counselor_name', 'Çağla Tokyürek')) ?></h3>
         <span>Yönetim Sistemi</span>
     </div>
 

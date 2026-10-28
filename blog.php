@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/config/config.php';
-$pageTitle = 'Blog & Yazılar — ' . get_setting('counselor_name', 'Elif Karaca');
+$pageTitle = 'Blog & Yazılar — ' . get_setting('counselor_name', 'Çağla Tokyürek');
 $metaDescription = 'Evlilik, çift ilişkileri, ebeveynlik ve çocuk gelişimi üzerine güncel rehber makaleler.';
 
 $db = get_db();
