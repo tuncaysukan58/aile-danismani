@@ -1,0 +1,13 @@
+# Çağla Tokyürek — Arama motoru tarama kuralları
+User-agent: *
+Allow: /
+
+# Yönetim paneli, API ve sistem klasörleri taranmasın
+Disallow: /admin/
+Disallow: /api/
+Disallow: /config/
+Disallow: /database/
+Disallow: /includes/
+Disallow: /install.php
+
+Sitemap: https://xn--alatokyrek-n6a3x2p.com/sitemap.xml

@@ -16,6 +16,83 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
     <title><?= htmlspecialchars($pageTitle ?? $siteTitle) ?></title>
     <meta name="description" content="<?= htmlspecialchars($metaDescription ?? 'Aile, çift ve ebeveyn danışmanlığı, atölyeler ve seminerler. Güvenli ve profesyonel rehberlik.') ?>">
     <link rel="canonical" href="<?= $canonicalUrl ?? (SITE_URL . '/' . ($currentPage === 'index' ? '' : $currentPage)) ?>">
+<?php
+    // --- SEO: Arama motoru ve sosyal medya etiketleri ---
+    $seoTitle = $pageTitle ?? $siteTitle;
+    $seoDesc  = $metaDescription ?? 'Aile, çift ve boşanma danışmanlığı, çocuk gelişimi değerlendirmeleri. Güvenli ve profesyonel rehberlik.';
+    $seoUrl   = $canonicalUrl ?? (SITE_URL . '/' . ($currentPage === 'index' ? '' : $currentPage));
+    $seoImage = $ogImage ?? (SITE_URL . '/assets/images/logo.jpg');
+    $gsv      = get_setting('google_site_verification', '');
+?>
+    <meta name="robots" content="<?= !empty($noIndex) ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1' ?>">
+    <meta name="author" content="<?= htmlspecialchars($counselorName) ?>">
+    <?php if ($gsv !== ''): ?>
+    <meta name="google-site-verification" content="<?= htmlspecialchars($gsv) ?>">
+    <?php endif; ?>
+
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+    <meta property="og:type" content="<?= htmlspecialchars($ogType ?? 'website') ?>">
+    <meta property="og:locale" content="tr_TR">
+    <meta property="og:site_name" content="<?= htmlspecialchars($counselorName) ?>">
+    <meta property="og:title" content="<?= htmlspecialchars($seoTitle) ?>">
+    <meta property="og:description" content="<?= htmlspecialchars($seoDesc) ?>">
+    <meta property="og:url" content="<?= htmlspecialchars($seoUrl) ?>">
+    <meta property="og:image" content="<?= htmlspecialchars($seoImage) ?>">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?= htmlspecialchars($seoTitle) ?>">
+    <meta name="twitter:description" content="<?= htmlspecialchars($seoDesc) ?>">
+    <meta name="twitter:image" content="<?= htmlspecialchars($seoImage) ?>">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="<?= SITE_URL ?>/assets/images/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?= SITE_URL ?>/assets/images/apple-touch-icon.png">
+    <meta name="theme-color" content="#855838">
+
+    <?php if ($currentPage === 'index'): ?>
+    <!-- Yapılandırılmış Veri (Google zengin sonuçlar) -->
+    <script type="application/ld+json">
+    <?= json_encode([
+        '@context' => 'https://schema.org',
+        '@graph' => [
+            [
+                '@type' => 'WebSite',
+                '@id'   => SITE_URL . '/#website',
+                'url'   => SITE_URL . '/',
+                'name'  => $counselorName,
+                'inLanguage' => 'tr-TR',
+            ],
+            [
+                '@type' => 'Person',
+                '@id'   => SITE_URL . '/#person',
+                'name'  => $counselorName,
+                'jobTitle' => $counselorTitle,
+                'url'   => SITE_URL . '/',
+                'image' => SITE_URL . '/assets/images/counselor.jpg',
+                'email' => 'mailto:' . get_setting('email', 'curlycagla@gmail.com'),
+                'alumniOf' => [
+                    ['@type' => 'CollegeOrUniversity', 'name' => 'Atatürk Üniversitesi'],
+                    ['@type' => 'CollegeOrUniversity', 'name' => 'İstanbul Arel Üniversitesi'],
+                ],
+                'knowsAbout' => ['Boşanma Danışmanlığı', 'Aile Danışmanlığı', 'Çift Danışmanlığı', 'Çocuk Gelişimi', 'Oyun Terapisi', 'MOXO Dikkat Testi', 'Denver II Gelişimsel Tarama Testi'],
+            ],
+            [
+                '@type' => 'ProfessionalService',
+                '@id'   => SITE_URL . '/#service',
+                'name'  => $counselorName . ' — ' . $counselorTitle,
+                'url'   => SITE_URL . '/',
+                'image' => SITE_URL . '/assets/images/logo.jpg',
+                'logo'  => SITE_URL . '/assets/images/logo.jpg',
+                'email' => get_setting('email', 'curlycagla@gmail.com'),
+                'founder' => ['@id' => SITE_URL . '/#person'],
+                'areaServed' => ['@type' => 'Country', 'name' => 'Türkiye'],
+                'serviceType' => ['Boşanma Danışmanlığı', 'Aile ve Çift Danışmanlığı', 'Çocuk Gelişimi Değerlendirmesi', 'Oyun Terapisi'],
+            ],
+        ],
+    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) ?>
+    </script>
+    <?php endif; ?>
 
     <!-- Google Fonts: Lora + Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

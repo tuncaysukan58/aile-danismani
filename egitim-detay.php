@@ -16,6 +16,7 @@ if (!$service) {
 $pageTitle = $service['title'] . ' — ' . get_setting('counselor_name', 'Çağla Tokyürek');
 $metaDescription = $service['summary'];
 $canonicalUrl = SITE_URL . '/egitim/' . $service['slug'];
+$ogImage = SITE_URL . '/' . ($service['image'] ?: 'assets/images/seminar.jpg');
 
 include __DIR__ . '/includes/header.php';
 ?>

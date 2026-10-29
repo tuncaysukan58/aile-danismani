@@ -19,6 +19,8 @@ $db->prepare("UPDATE blog_posts SET views = views + 1 WHERE id = ?")->execute([$
 $pageTitle = $post['title'] . ' — ' . get_setting('counselor_name', 'Çağla Tokyürek');
 $metaDescription = $post['summary'];
 $canonicalUrl = SITE_URL . '/blog/' . $post['slug'];
+$ogImage = SITE_URL . '/' . ($post['cover_image'] ?: 'assets/images/therapy.jpg');
+$ogType = 'article';
 
 // Benzer Diğer Yazılar
 $stmtRel = $db->prepare("SELECT * FROM blog_posts WHERE id != ? AND status = 'published' ORDER BY id DESC LIMIT 2");

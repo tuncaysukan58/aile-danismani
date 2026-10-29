@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/config/config.php';
 $pageTitle = 'Eğitimlerim ve Danışmanlık Hizmetleri — ' . get_setting('counselor_name', 'Çağla Tokyürek');
-$metaDescription = 'Bireysel aile danışmanlığı, çift terapisi, bilinçli ebeveynlik ve ergen iletişim atölyeleri.';
+$metaDescription = 'Boşanma danışmanlığı, aile ve çift danışmanlığı, çocuk değerlendirme testleri, MOXO dikkat testi, Denver II, oyun terapisi ve eğitim danışmanlığı.';
 
 $db = get_db();
 

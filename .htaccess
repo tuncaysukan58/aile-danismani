@@ -9,6 +9,19 @@ Options -Indexes -MultiViews
     RewriteEngine On
     RewriteBase /
 
+    # 0a. HTTP -> HTTPS kalıcı yönlendirme (Google tek ve güvenli adres görsün)
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1) [NC]
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,NE]
+
+    # 0b. www -> www'suz kalıcı yönlendirme (yinelenen içerik oluşmasın)
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L,NE]
+
+    # 0c. Sitemap: /sitemap.xml adresi dinamik sitemap.php dosyasından üretilir
+    RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
     # 1. Klasör değilse sonundaki eğik çizgiyi kaldır (Canonical temiz URL)
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/+$
@@ -25,6 +38,7 @@ Options -Indexes -MultiViews
     RewriteCond %{REQUEST_URI} !^/admin/ [NC]
     RewriteCond %{REQUEST_URI} !^/api/ [NC]
     RewriteCond %{REQUEST_URI} !^/install\.php [NC]
+    RewriteCond %{REQUEST_URI} !^/sitemap\.php [NC]
     RewriteRule ^ /%1 [R=301,L,NE]
 
     # 4. Blog ve Eğitim Detayları için temiz URL yönlendirmeleri
@@ -50,5 +64,20 @@ Options -Indexes -MultiViews
 
 # PHP Önbellek & Sıkıştırma (Gzip)
 <IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml image/svg+xml
 </IfModule>
+
+# Tarayıcı önbelleği (sayfa hızı Google sıralamasını etkiler)
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+</IfModule>
+
+# Özel 404 sayfası
+ErrorDocument 404 /404.php

@@ -15,6 +15,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'stat_seminars', 'stat_followers', 'instagram', 'youtube', 'linkedin'
         ];
 
+        // Search Console: tam <meta> etiketi yapıştırılırsa sadece content değerini al
+        if (isset($_POST['google_site_verification'])) {
+            $gsv = trim($_POST['google_site_verification']);
+            if (preg_match('/content=["\']([^"\']+)["\']/i', $gsv, $m)) {
+                $gsv = $m[1];
+            }
+            set_setting('google_site_verification', preg_replace('/[^A-Za-z0-9_\-]/', '', $gsv));
+        }
+
         foreach ($settingsList as $key) {
             if (isset($_POST[$key])) {
                 set_setting($key, trim($_POST[$key]));
@@ -143,6 +152,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="linkedin">LinkedIn</label>
                     <input type="text" id="linkedin" name="linkedin" class="admin-form-control" value="<?= htmlspecialchars(get_setting('linkedin')) ?>">
                 </div>
+            </div>
+
+            <h4 style="margin: 24px 0 16px; border-bottom: 1px solid var(--admin-border); padding-bottom: 8px;">Google Search Console</h4>
+
+            <div class="admin-form-group">
+                <label for="google_site_verification">Doğrulama Kodu (HTML etiketi)</label>
+                <input type="text" id="google_site_verification" name="google_site_verification" class="admin-form-control" value="<?= htmlspecialchars(get_setting('google_site_verification')) ?>" placeholder="Örn: AbC123xYz...">
+                <small style="color:var(--admin-text-muted); font-size:0.75rem;">Search Console → "HTML etiketi" yöntemindeki <code>content="..."</code> değerini yapıştırın. Etiketin tamamını yapıştırırsanız kod otomatik ayıklanır.</small>
             </div>
 
             <button type="submit" class="btn-sm btn-primary-sm" style="padding:12px 28px; font-size:1rem; margin-top:10px;">
