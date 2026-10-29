@@ -42,10 +42,6 @@ include __DIR__ . '/includes/header.php';
                 <img class="hero-logo-light" src="<?= SITE_URL ?>/assets/images/logo.jpg" alt="<?= htmlspecialchars(get_setting('counselor_name', 'Çağla Tokyürek')) ?> Logo" width="1024" height="1024">
                 <img class="hero-logo-dark" src="<?= SITE_URL ?>/assets/images/logo-full.png" alt="" aria-hidden="true" width="480" height="332">
             </div>
-            <div class="hero-badge-tag">
-                <strong><?= htmlspecialchars(get_setting('counselor_name', 'Çağla Tokyürek')) ?></strong>
-                <span><?= htmlspecialchars(get_setting('counselor_title', 'Çocuk Gelişimci & Aile, Çift ve Boşanma Danışmanı')) ?></span>
-            </div>
         </div>
     </div>
 </section>
