@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,32 +54,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             margin: 0;
             padding: 20px;
         }
+
         .login-box {
             background: #FFFFFF;
             border: 1px solid #E2E8F0;
             border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
             width: 100%;
             max-width: 420px;
             padding: 40px;
         }
+
         .login-header {
             text-align: center;
             margin-bottom: 30px;
         }
+
         .login-header h2 {
             margin: 0 0 8px;
             color: #1E293B;
             font-size: 1.5rem;
         }
+
         .login-header p {
             margin: 0;
             color: #64748B;
             font-size: 0.9rem;
         }
+
         .form-group {
             margin-bottom: 20px;
         }
+
         .form-group label {
             display: block;
             margin-bottom: 8px;
@@ -86,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-weight: 600;
             color: #334155;
         }
+
         .form-control {
             width: 100%;
             padding: 12px 16px;
@@ -96,10 +104,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             outline: none;
             transition: all 0.2s;
         }
+
         .form-control:focus {
             border-color: #855838;
             box-shadow: 0 0 0 3px rgba(133, 88, 56, 0.15);
         }
+
         .btn-submit {
             width: 100%;
             background: #855838;
@@ -112,9 +122,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             cursor: pointer;
             transition: all 0.2s;
         }
+
         .btn-submit:hover {
             background: #6E462A;
         }
+
         .error-alert {
             background: #FEF2F2;
             color: #991B1B;
@@ -125,6 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-size: 0.9rem;
             text-align: center;
         }
+
         .default-hint {
             margin-top: 24px;
             background: #F8FAFC;
@@ -137,42 +150,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     </style>
 </head>
+
 <body>
 
-<div class="login-box">
-    <div class="login-header">
-        <h2>Yönetim Paneli</h2>
-        <p>Lütfen yönetici giriş bilgilerinizi yazınız</p>
-    </div>
-
-    <?php if ($error): ?>
-    <div class="error-alert">
-        <?= htmlspecialchars($error) ?>
-    </div>
-    <?php endif; ?>
-
-    <form method="POST" action="">
-        <div class="form-group">
-            <label for="username">Kullanıcı Adı</label>
-            <input type="text" id="username" name="username" class="form-control" required placeholder="admin" autofocus>
+    <div class="login-box">
+        <div class="login-header">
+            <h2>Yönetim Paneli</h2>
+            <p>Lütfen yönetici giriş bilgilerinizi yazınız</p>
         </div>
 
-        <div class="form-group">
-            <label for="password">Şifre</label>
-            <input type="password" id="password" name="password" class="form-control" required placeholder="••••••••">
+        <?php if ($error): ?>
+            <div class="error-alert">
+                <?= htmlspecialchars($error) ?>
+            </div>
+        <?php endif; ?>
+
+        <form method="POST" action="">
+            <div class="form-group">
+                <label for="username">Kullanıcı Adı</label>
+                <input type="text" id="username" name="username" class="form-control" required placeholder="admin"
+                    autofocus>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Şifre</label>
+                <input type="password" id="password" name="password" class="form-control" required
+                    placeholder="••••••••">
+            </div>
+
+            <button type="submit" class="btn-submit">Giriş Yap</button>
+        </form>
+
+
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="<?= SITE_URL ?>/" style="color: #64748B; font-size: 0.85rem; text-decoration: none;">← Web Sitesine
+                Dön</a>
         </div>
-
-        <button type="submit" class="btn-submit">Giriş Yap</button>
-    </form>
-
-    <div class="default-hint">
-        Varsayılan Kullanıcı: <strong>admin</strong> | Şifre: <strong>admin123</strong>
     </div>
-
-    <div style="text-align: center; margin-top: 20px;">
-        <a href="<?= SITE_URL ?>/" style="color: #64748B; font-size: 0.85rem; text-decoration: none;">← Web Sitesine Dön</a>
-    </div>
-</div>
 
 </body>
+
 </html>
