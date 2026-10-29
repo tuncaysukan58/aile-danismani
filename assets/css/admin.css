@@ -399,3 +399,125 @@ body.admin-body {
         grid-template-columns: 1fr;
     }
 }
+
+/* ==========================================================
+   Görsel Seçici (Eğitim / Hizmet kapak görseli)
+   ========================================================== */
+.img-picker {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.img-preview {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--admin-border);
+    background: var(--admin-bg);
+}
+
+.img-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.img-preview-label {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    background: rgba(15, 23, 42, 0.72);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+
+.img-upload-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 14px;
+    border: 1.5px dashed var(--primary);
+    border-radius: 10px;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.img-upload-btn:hover {
+    background: rgba(133, 88, 56, 0.06);
+}
+
+.img-upload-btn input[type="file"] {
+    display: none;
+}
+
+.img-hint {
+    color: var(--admin-text-muted);
+    font-size: 0.75rem;
+}
+
+.img-gallery-wrap summary {
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--admin-text-main);
+    padding: 6px 0;
+}
+
+.img-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+    gap: 8px;
+    max-height: 240px;
+    overflow-y: auto;
+    padding: 8px 2px 2px;
+}
+
+.img-gallery-item {
+    aspect-ratio: 1 / 1;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--admin-bg);
+    transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.img-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.img-gallery-item:hover {
+    transform: scale(1.04);
+}
+
+.img-gallery-item.selected {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(133, 88, 56, 0.25);
+}
+
+/* Liste küçük resmi */
+.svc-thumb {
+    width: 64px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--admin-border);
+    display: block;
+}

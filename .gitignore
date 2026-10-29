@@ -6,3 +6,7 @@
 database/*.sqlite
 database/*.sqlite-journal
 
+
+# Admin panelinden yüklenen görseller (sunucuda tutulur)
+assets/uploads/*/
+
