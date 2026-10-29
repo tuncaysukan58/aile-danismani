@@ -1,6 +1,9 @@
 <?php
 $adminTitle = 'Blog & Makale Yönetimi';
 require_once __DIR__ . '/includes/admin-header.php';
+require_once __DIR__ . '/includes/image-upload.php';
+
+const DEFAULT_BLOG_IMAGE = 'assets/images/therapy.jpg';
 
 $db = get_db();
 $message = '';
@@ -40,23 +43,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $status = isset($_POST['is_published']) ? 'published' : 'draft';
     $slug = slugify($title);
 
-    if ($title && $summary && $content) {
+    // Kapak görseli: yeni yükleme > galeri seçimi > mevcut > varsayılan
+    $img = resolve_image_from_form($editPost['cover_image'] ?? '', DEFAULT_BLOG_IMAGE, 'blog');
+    $coverImage = $img['image'];
+    $error = $img['error'];
+
+    if ($error) {
+        // Görsel hatası: hiçbir şey kaydedilmez
+    } elseif ($title && $summary && $content) {
         if ($editPost) {
             $stmt = $db->prepare("
                 UPDATE blog_posts 
-                SET title = ?, slug = ?, category = ?, summary = ?, content = ?, reading_time = ?, status = ? 
+                SET title = ?, slug = ?, category = ?, summary = ?, content = ?, reading_time = ?, status = ?, cover_image = ? 
                 WHERE id = ?
             ");
-            $stmt->execute([$title, $slug, $category, $summary, $content, $readingTime, $status, $editPost['id']]);
+            $stmt->execute([$title, $slug, $category, $summary, $content, $readingTime, $status, $coverImage, $editPost['id']]);
             $message = 'Makale başarıyla güncellendi.';
             $editPost = null;
         } else {
             $publishedAt = date('Y-m-d');
             $stmt = $db->prepare("
                 INSERT INTO blog_posts (title, slug, category, summary, content, cover_image, reading_time, status, published_at) 
-                VALUES (?, ?, ?, ?, ?, 'assets/images/therapy.jpg', ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
             ");
-            $stmt->execute([$title, $slug, $category, $summary, $content, $readingTime, $status, $publishedAt]);
+            $stmt->execute([$title, $slug, $category, $summary, $content, $coverImage, $readingTime, $status, $publishedAt]);
             $message = 'Yeni makale yayınlandı.';
         }
     } else {
@@ -86,11 +96,14 @@ $posts = $db->query("SELECT * FROM blog_posts ORDER BY id DESC")->fetchAll();
             <?php endif; ?>
         </div>
 
-        <form method="POST" action="">
+        <form method="POST" action="" enctype="multipart/form-data">
             <div class="admin-form-group">
                 <label for="title">Makale Başlığı *</label>
                 <input type="text" id="title" name="title" class="admin-form-control" value="<?= htmlspecialchars($editPost['title'] ?? '') ?>" required placeholder="Örn: Evlilikte İletişim Becerileri">
             </div>
+
+            <!-- Kapak Görseli -->
+            <?php render_image_picker($editPost['cover_image'] ?? '', DEFAULT_BLOG_IMAGE, 'Kapak Görseli', 'önerilen oran 16:9 (ör. 1600×900)'); ?>
 
             <div class="admin-form-group">
                 <label for="category">Kategori</label>
@@ -138,6 +151,7 @@ $posts = $db->query("SELECT * FROM blog_posts ORDER BY id DESC")->fetchAll();
                 <table class="admin-table">
                     <thead>
                         <tr>
+                            <th>Görsel</th>
                             <th>Başlık</th>
                             <th>Kategori</th>
                             <th>Tarih</th>
@@ -148,6 +162,11 @@ $posts = $db->query("SELECT * FROM blog_posts ORDER BY id DESC")->fetchAll();
                     <tbody>
                         <?php foreach ($posts as $p): ?>
                         <tr>
+                            <td>
+                                <a href="<?= SITE_URL ?>/<?= htmlspecialchars($p['cover_image'] ?: DEFAULT_BLOG_IMAGE) ?>" target="_blank" title="Görseli büyük aç">
+                                    <img class="svc-thumb" src="<?= SITE_URL ?>/<?= htmlspecialchars($p['cover_image'] ?: DEFAULT_BLOG_IMAGE) ?>" alt="" loading="lazy">
+                                </a>
+                            </td>
                             <td>
                                 <strong><?= htmlspecialchars($p['title']) ?></strong>
                             </td>

@@ -47,19 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $slug = slugify($title);
 
     // Görsel: 1) yeni yükleme  2) galeriden seçim  3) mevcut görsel  4) varsayılan
-    $image = $editItem['image'] ?? '';
-    $upload = handle_image_upload('image_file', 'services');
-    $galleryChoice = trim($_POST['gallery_image'] ?? '');
-    if (!empty($upload['error'])) {
-        $error = $upload['error'];
-    } elseif ($upload['ok']) {
-        $image = $upload['path'];
-    } elseif (is_valid_gallery_choice($galleryChoice)) {
-        $image = $galleryChoice;
-    }
-    if ($image === '') {
-        $image = DEFAULT_SERVICE_IMAGE;
-    }
+    $img = resolve_image_from_form($editItem['image'] ?? '', DEFAULT_SERVICE_IMAGE, 'services');
+    $image = $img['image'];
+    $error = $img['error'];
 
     if ($error) {
         // Görsel hatası: kaydetme, formu koru
@@ -90,8 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // Tüm Hizmetler
 $services = $db->query("SELECT * FROM services ORDER BY display_order ASC, id DESC")->fetchAll();
-$galleryImages = list_gallery_images();
-$currentImage = $editItem['image'] ?? '';
 ?>
 
 <?php if ($message): ?>
@@ -119,37 +107,7 @@ $currentImage = $editItem['image'] ?? '';
             </div>
 
             <!-- Görsel Seçimi -->
-            <div class="admin-form-group">
-                <label>Kapak Görseli</label>
-                <div class="img-picker">
-                    <div class="img-preview" id="imgPreview">
-                        <img src="<?= SITE_URL ?>/<?= htmlspecialchars($currentImage ?: DEFAULT_SERVICE_IMAGE) ?>" alt="Seçili görsel" id="imgPreviewTag">
-                        <span class="img-preview-label" id="imgPreviewLabel"><?= $currentImage ? 'Mevcut görsel' : 'Varsayılan görsel' ?></span>
-                    </div>
-
-                    <label class="img-upload-btn">
-                        <input type="file" name="image_file" id="imageFile" accept="image/jpeg,image/png,image/webp">
-                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-                        <span id="imageFileName">Bilgisayardan Görsel Yükle</span>
-                    </label>
-                    <small class="img-hint">JPG, PNG veya WEBP · en fazla 5 MB · önerilen oran 4:3 (ör. 1200×900)</small>
-
-                    <input type="hidden" name="gallery_image" id="galleryImage" value="">
-
-                    <?php if (!empty($galleryImages)): ?>
-                    <details class="img-gallery-wrap">
-                        <summary>veya mevcut görsellerden seç (<?= count($galleryImages) ?>)</summary>
-                        <div class="img-gallery">
-                            <?php foreach ($galleryImages as $g): ?>
-                            <button type="button" class="img-gallery-item <?= $g === $currentImage ? 'selected' : '' ?>" data-path="<?= htmlspecialchars($g) ?>" title="<?= htmlspecialchars(basename($g)) ?>">
-                                <img src="<?= SITE_URL ?>/<?= htmlspecialchars($g) ?>" alt="" loading="lazy">
-                            </button>
-                            <?php endforeach; ?>
-                        </div>
-                    </details>
-                    <?php endif; ?>
-                </div>
-            </div>
+            <?php render_image_picker($editItem['image'] ?? '', DEFAULT_SERVICE_IMAGE); ?>
 
             <div class="admin-form-group">
                 <label for="category">Kategori</label>
@@ -254,48 +212,5 @@ $currentImage = $editItem['image'] ?? '';
     </div>
 
 </div>
-
-<script>
-(function () {
-    var fileInput = document.getElementById('imageFile');
-    var fileName  = document.getElementById('imageFileName');
-    var preview   = document.getElementById('imgPreviewTag');
-    var label     = document.getElementById('imgPreviewLabel');
-    var hidden    = document.getElementById('galleryImage');
-    var items     = document.querySelectorAll('.img-gallery-item');
-    if (!fileInput) return;
-
-    function clearSelection() { items.forEach(function (b) { b.classList.remove('selected'); }); }
-
-    // Bilgisayardan dosya seçilince anında önizle
-    fileInput.addEventListener('change', function () {
-        var f = this.files && this.files[0];
-        if (!f) return;
-        if (f.size > 5 * 1024 * 1024) {
-            alert('Görsel 5 MB\'tan büyük olamaz.');
-            this.value = '';
-            return;
-        }
-        preview.src = URL.createObjectURL(f);
-        label.textContent = 'Yeni yüklenecek';
-        fileName.textContent = f.name;
-        hidden.value = '';
-        clearSelection();
-    });
-
-    // Galeriden seçim
-    items.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            clearSelection();
-            btn.classList.add('selected');
-            hidden.value = btn.dataset.path;
-            preview.src = btn.querySelector('img').src;
-            label.textContent = 'Galeriden seçildi';
-            fileInput.value = '';
-            fileName.textContent = 'Bilgisayardan Görsel Yükle';
-        });
-    });
-})();
-</script>
 
 <?php require_once __DIR__ . '/includes/admin-footer.php'; ?>
