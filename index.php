@@ -38,11 +38,9 @@ include __DIR__ . '/includes/header.php';
         </div>
 
         <div class="hero-portrait">
-            <div class="hero-image-wrapper">
-                <img src="<?= SITE_URL ?>/assets/images/counselor.jpg" alt="<?= htmlspecialchars(get_setting('counselor_name')) ?>">
-                <div class="hero-logo-badge" aria-hidden="true">
-                    <img src="<?= SITE_URL ?>/assets/images/logo-mark.png" alt="" width="85" height="74">
-                </div>
+            <div class="hero-image-wrapper hero-logo-wrapper">
+                <img class="hero-logo-light" src="<?= SITE_URL ?>/assets/images/logo.jpg" alt="<?= htmlspecialchars(get_setting('counselor_name', 'Çağla Tokyürek')) ?> Logo" width="1024" height="1024">
+                <img class="hero-logo-dark" src="<?= SITE_URL ?>/assets/images/logo-full.png" alt="" aria-hidden="true" width="480" height="332">
             </div>
             <div class="hero-badge-tag">
                 <strong><?= htmlspecialchars(get_setting('counselor_name', 'Çağla Tokyürek')) ?></strong>
