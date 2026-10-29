@@ -40,6 +40,9 @@ include __DIR__ . '/includes/header.php';
         <div class="hero-portrait">
             <div class="hero-image-wrapper">
                 <img src="<?= SITE_URL ?>/assets/images/counselor.jpg" alt="<?= htmlspecialchars(get_setting('counselor_name')) ?>">
+                <div class="hero-logo-badge" aria-hidden="true">
+                    <img src="<?= SITE_URL ?>/assets/images/logo-mark.png" alt="" width="85" height="74">
+                </div>
             </div>
             <div class="hero-badge-tag">
                 <strong><?= htmlspecialchars(get_setting('counselor_name', 'Çağla Tokyürek')) ?></strong>
