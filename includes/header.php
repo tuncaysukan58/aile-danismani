@@ -71,6 +71,7 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
                 'url'   => SITE_URL . '/',
                 'image' => SITE_URL . '/assets/images/counselor.jpg',
                 'email' => 'mailto:' . get_setting('email', 'curlycagla@gmail.com'),
+                'sameAs' => array_values(array_filter([get_instagram_url()])),
                 'alumniOf' => [
                     ['@type' => 'CollegeOrUniversity', 'name' => 'Atatürk Üniversitesi'],
                     ['@type' => 'CollegeOrUniversity', 'name' => 'İstanbul Arel Üniversitesi'],

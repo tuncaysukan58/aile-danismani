@@ -188,3 +188,26 @@ function get_whatsapp_display(): string {
     }
     return $wa;
 }
+
+
+/**
+ * Instagram profil linki (ayar: tam URL, instagram.com/kullanici veya @kullanici kabul edilir)
+ */
+function get_instagram_url(): string {
+    $ig = trim(get_setting('instagram', ''));
+    if ($ig === '') return '';
+    if (preg_match('#^https?://#i', $ig)) return $ig;
+    $ig = preg_replace('#^(www\.)?instagram\.com/#i', '', ltrim($ig, '@'));
+    return 'https://www.instagram.com/' . trim($ig, '/') . '/';
+}
+
+/**
+ * Instagram görünen metin: @kullaniciadi
+ */
+function get_instagram_display(): string {
+    $url = get_instagram_url();
+    if ($url === '') return '';
+    $path = trim((string)parse_url($url, PHP_URL_PATH), '/');
+    $user = explode('/', $path)[0] ?? '';
+    return $user !== '' ? '@' . $user : $url;
+}
